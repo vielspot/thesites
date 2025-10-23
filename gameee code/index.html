@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory of Classical Economics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #fef9e7;
+            color: #5d4037;
+            min-height: 100vh;
+            font-family: 'Crimson Text', serif;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fffaf0;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(141, 110, 99, 0.2);
+            border: 2px solid #d4af37;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #8d6e63;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #a1887f;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .screen {
+            display: none;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+            background: #f5e8c8;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .merchant-area {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .merchant {
+            width: 120px;
+            height: 180px;
+            position: relative;
+        }
+        
+        .merchant-body {
+            width: 80px;
+            height: 120px;
+            background: #8d6e63;
+            border-radius: 40px 40px 0 0;
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+        }
+        
+        .merchant-head {
+            width: 60px;
+            height: 60px;
+            background: #ffccbc;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 110px;
+            left: 30px;
+        }
+        
+        .merchant-hat {
+            width: 70px;
+            height: 30px;
+            background: #5d4037;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            bottom: 160px;
+            left: 25px;
+        }
+        
+        .market-stall {
+            width: 300px;
+            height: 150px;
+            background: #a1887f;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .stall-roof {
+            width: 320px;
+            height: 30px;
+            background: #795548;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            border-radius: 5px;
+        }
+        
+        .goods {
+            text-align: center;
+        }
+        
+        .goods-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            background: #f5e8c8;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        
+        .options {
+            display: grid;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .option {
+            background: #f5e8c8;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #e6d2a9;
+            transform: translateY(-3px);
+        }
+        
+        .option-title {
+            font-weight: bold;
+            color: #5d4037;
+            margin-bottom: 8px;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #b8941f;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #d4af37;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .result {
+            background: #f5e8c8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .ending {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .ending-title {
+            font-size: 2.2rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+        }
+        
+        .score-breakdown {
+            background: #f5e8c8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        
+        .sway {
+            animation: sway 3s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invisible Hand Challenge</h1>
+        <div class="subtitle">Classical Economics Adventure</div>
+        
+        <!-- Intro Screen -->
+        <div id="intro-screen" class="screen active">
+            <div class="intro-text">
+                <p>"Kamu adalah pedagang muda di abad ke-18. Pemerintah belum banyak campur tangan dalam ekonomi. Semua tergantung keputusanmu dan mekanisme pasar."</p>
+                <p>Bisakah kamu membuat ekonomi berjalan tanpa campur tangan pemerintah?</p>
+            </div>
+            
+            <div class="merchant-area">
+                <div class="merchant sway">
+                    <div class="merchant-hat"></div>
+                    <div class="merchant-head"></div>
+                    <div class="merchant-body"></div>
+                </div>
+            </div>
+            
+            <button id="start-btn" class="btn">Mulai Permainan</button>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div style="text-align: center; font-size: 1.4rem; margin-bottom: 20px; color: #8d6e63;" id="round-title">Ronde 1 — Produksi</div>
+            
+            <div class="market-stall">
+                <div class="stall-roof"></div>
+                <div class="goods">
+                    <div class="goods-icon bounce">🧵</div>
+                    <div>Kain</div>
+                </div>
+                <div class="goods">
+                    <div class="goods-icon bounce">🌾</div>
+                    <div>Gandum</div>
+                </div>
+                <div class="goods">
+                    <div class="goods-icon bounce">💎</div>
+                    <div>Barang Mewah</div>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div>Modal</div>
+                    <div class="stat-value" id="money">100</div>
+                </div>
+                <div class="stat-item">
+                    <div>Stok</div>
+                    <div class="stat-value" id="stock">0</div>
+                </div>
+                <div class="stat-item">
+                    <div>Pekerja</div>
+                    <div class="stat-value" id="workers">0</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="game-progress"></div>
+            </div>
+            
+            <div id="round-description" class="intro-text">
+                Kamu diberi modal 100 koin. Pilih jenis barang yang akan diproduksi:
+            </div>
+            
+            <div class="options" id="options-container">
+                <div class="option" onclick="selectOption(0)">
+                    <div class="option-title">A. Kain</div>
+                    <div>Permintaan tinggi, biaya sedang</div>
+                </div>
+                <div class="option" onclick="selectOption(1)">
+                    <div class="option-title">B. Gandum</div>
+                    <div>Permintaan stabil, biaya rendah</div>
+                </div>
+                <div class="option" onclick="selectOption(2)">
+                    <div class="option-title">C. Barang Mewah</div>
+                    <div>Permintaan rendah, risiko tinggi</div>
+                </div>
+            </div>
+            
+            <div class="result" id="round-result" style="display: none;">
+                <div style="font-weight: bold; margin-bottom: 10px;">Hasil Keputusan:</div>
+                <div id="result-text"></div>
+            </div>
+            
+            <button id="next-btn" class="btn" style="display: none;">Lanjutkan</button>
+        </div>
+        
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="screen">
+            <div class="ending">
+                <div id="ending-title" class="ending-title"></div>
+                <div id="ending-desc" style="font-size: 1.2rem; line-height: 1.6; margin: 20px 0;"></div>
+                
+                <div class="score-breakdown">
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Keseimbangan Pasar:</span>
+                        <span id="market-score">0/40</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Efisiensi Tenaga Kerja:</span>
+                        <span id="labor-score">0/30</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                        <span>Moral Klasik:</span>
+                        <span id="moral-score">0/30</span>
+                    </div>
+                </div>
+                
+                <div style="font-size: 2rem; color: #d4af37; margin: 20px 0;" id="final-score">Skor: 0/100</div>
+                
+                <button id="restart-btn" class="btn">Main Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        const gameState = {
+            currentRound: 0,
+            money: 100,
+            stock: 0,
+            workers: 0,
+            marketBalance: 0,
+            laborEfficiency: 0,
+            classicalMoral: 0,
+            choices: []
+        };
+
+        const roundData = [
+            {
+                title: "Ronde 1 — Produksi",
+                description: "Kamu diberi modal 100 koin. Pilih jenis barang yang akan diproduksi:",
+                options: [
+                    { title: "A. Kain", desc: "Permintaan tinggi, biaya sedang", effect: { money: -40, stock: 60, marketBalance: 10 } },
+                    { title: "B. Gandum", desc: "Permintaan stabil, biaya rendah", effect: { money: -20, stock: 40, marketBalance: 5 } },
+                    { title: "C. Barang Mewah", desc: "Permintaan rendah, risiko tinggi", effect: { money: -60, stock: 30, marketBalance: 15 } }
+                ],
+                resultText: "Kalau banyak pemain pilih sama, harga turun. Kalau beda, potensi untung tinggi tapi risiko besar."
+            },
+            {
+                title: "Ronde 2 — Tenaga Kerja",
+                description: "Kamu perlu memutuskan upah pekerja:",
+                options: [
+                    { title: "A. Upah Tinggi", desc: "Pekerja loyal tapi biaya besar", effect: { money: -30, workers: 5, laborEfficiency: 10 } },
+                    { title: "B. Upah Rendah", desc: "Laba naik tapi produktivitas turun", effect: { money: -10, workers: 3, laborEfficiency: -5 } },
+                    { title: "C. Upah Sedang", desc: "Stabil", effect: { money: -20, workers: 4, laborEfficiency: 5 } }
+                ],
+                resultText: "Konsep: teori upah alami (David Ricardo)."
+            },
+            {
+                title: "Ronde 3 — Perdagangan",
+                description: "Harga pasar berubah. Kamu bisa:",
+                options: [
+                    { title: "A. Naikkan Harga", desc: "Tingkatkan margin keuntungan", effect: { money: 40, stock: -20, marketBalance: 10 } },
+                    { title: "B. Turunkan Harga", desc: "Tingkatkan volume penjualan", effect: { money: 30, stock: -30, marketBalance: 5 } },
+                    { title: "C. Simpan Stok", desc: "Tunggu harga naik", effect: { money: 10, stock: 0, marketBalance: 0 } }
+                ],
+                resultText: "Konsep: keseimbangan pasar (Adam Smith)."
+            },
+            {
+                title: "Ronde 4 — Populasi Bertambah",
+                description: "Populasi meningkat. Tenaga kerja melimpah:",
+                options: [
+                    { title: "A. Rekrut Lebih Banyak", desc: "Manfaatkan tenaga murah", effect: { money: -20, workers: 8, laborEfficiency: 5 } },
+                    { title: "B. Otomatisasi", desc: "Investasi teknologi", effect: { money: -50, workers: 2, laborEfficiency: 15 } },
+                    { title: "C. Tidak Berubah", desc: "Pertahankan status quo", effect: { money: 0, workers: 0, laborEfficiency: 0 } }
+                ],
+                resultText: "Konsep: Hukum populasi Malthus."
+            },
+            {
+                title: "Ronde 5 — Krisis Pasar",
+                description: "Harga bahan baku naik. Pilih reaksi:",
+                options: [
+                    { title: "A. Minta Bantuan Pemerintah", desc: "Melanggar prinsip klasik", effect: { money: 50, stock: 20, classicalMoral: -30 } },
+                    { title: "B. Potong Biaya", desc: "Efisiensi untuk bertahan", effect: { money: 20, stock: 10, classicalMoral: 10 } },
+                    { title: "C. Produk Baru", desc: "Inovasi hadapi krisis", effect: { money: -30, stock: 40, classicalMoral: 20 } }
+                ],
+                resultText: "Konsep: pasar bebas vs intervensi pemerintah."
+            }
+        ];
+
+        // DOM Elements
+        const introScreen = document.getElementById('intro-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const endingScreen = document.getElementById('ending-screen');
+        const startBtn = document.getElementById('start-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+
+        // Event Listeners
+        startBtn.addEventListener('click', startGame);
+        nextBtn.addEventListener('click', nextRound);
+        restartBtn.addEventListener('click', restartGame);
+
+        function startGame() {
+            introScreen.classList.remove('active');
+            gameScreen.classList.add('active');
+            gameState.currentRound = 0;
+            loadRound();
+        }
+
+        function loadRound() {
+            const round = roundData[gameState.currentRound];
+            
+            document.getElementById('round-title').textContent = round.title;
+            document.getElementById('round-description').textContent = round.description;
+            document.getElementById('round-result').style.display = 'none';
+            nextBtn.style.display = 'none';
+            
+            // Update progress
+            document.getElementById('game-progress').style.width = `${(gameState.currentRound / roundData.length) * 100}%`;
+            
+            // Update stats
+            document.getElementById('money').textContent = gameState.money;
+            document.getElementById('stock').textContent = gameState.stock;
+            document.getElementById('workers').textContent = gameState.workers;
+            
+            // Create options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            round.options.forEach((option, index) => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option';
+                optionEl.innerHTML = `
+                    <div class="option-title">${option.title}</div>
+                    <div>${option.desc}</div>
+                `;
+                optionEl.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionEl);
+            });
+        }
+
+        function selectOption(optionIndex) {
+            const round = roundData[gameState.currentRound];
+            const selectedOption = round.options[optionIndex];
+            
+            // Apply effects
+            Object.keys(selectedOption.effect).forEach(key => {
+                gameState[key] += selectedOption.effect[key];
+            });
+            
+            // Store choice
+            gameState.choices.push(optionIndex);
+            
+            // Show result
+            document.getElementById('result-text').textContent = round.resultText;
+            document.getElementById('round-result').style.display = 'block';
+            
+            // Update stats
+            document.getElementById('money').textContent = gameState.money;
+            document.getElementById('stock').textContent = gameState.stock;
+            document.getElementById('workers').textContent = gameState.workers;
+            
+            // Disable options
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                option.style.opacity = '0.6';
+            });
+            
+            // Show next button
+            nextBtn.style.display = 'block';
+        }
+
+        function nextRound() {
+            gameState.currentRound++;
+            
+            if (gameState.currentRound < roundData.length) {
+                loadRound();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            gameScreen.classList.remove('active');
+            endingScreen.classList.add('active');
+            
+            // Calculate scores
+            const marketScore = Math.max(0, Math.min(40, gameState.marketBalance + 20));
+            const laborScore = Math.max(0, Math.min(30, gameState.laborEfficiency + 15));
+            const moralScore = Math.max(0, Math.min(30, gameState.classicalMoral + 15));
+            const totalScore = marketScore + laborScore + moralScore;
+            
+            // Update score display
+            document.getElementById('market-score').textContent = `${marketScore}/40`;
+            document.getElementById('labor-score').textContent = `${laborScore}/30`;
+            document.getElementById('moral-score').textContent = `${moralScore}/30`;
+            document.getElementById('final-score').textContent = `Skor: ${totalScore}/100`;
+            
+            // Determine ending
+            let title, description;
+            
+            if (totalScore >= 80 && moralScore >= 25) {
+                title = "The True Classicist";
+                description = "Kamu sukses tanpa intervensi! Pasar berjalan sendiri sesuai prinsip ekonomi klasik.";
+            } else if (totalScore >= 50) {
+                title = "The Struggling Merchant";
+                description = "Kamu bertahan tapi ekonomi lesu. Beberapa keputusan tepat, tapi perlu belajar lagi.";
+            } else {
+                title = "The Interventionist";
+                description = "Kamu minta bantuan pemerintah - gagal jadi penganut ekonomi klasik sejati.";
+            }
+            
+            document.getElementById('ending-title').textContent = title;
+            document.getElementById('ending-desc').textContent = description;
+        }
+
+        function restartGame() {
+            // Reset game state
+            gameState.currentRound = 0;
+            gameState.money = 100;
+            gameState.stock = 0;
+            gameState.workers = 0;
+            gameState.marketBalance = 0;
+            gameState.laborEfficiency = 0;
+            gameState.classicalMoral = 0;
+            gameState.choices = [];
+            
+            endingScreen.classList.remove('active');
+            introScreen.classList.add('active');
+        }
+    </script>
+</body>
+</html>
